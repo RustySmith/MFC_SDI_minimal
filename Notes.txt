@@ -1,0 +1,3 @@
+I am trying to make a "minimal" MFC SDI app. At project creation, I unchecked everything I could. I am also deleting or commenting-out code to see if it will still run. The project built and ran as created.
+The window does not have maximize, minimize or exit buttons. It does have file, edit, and help menu items, and a toolbar with menu icons for new, open, save, cut, copy, paste, print and about.
+Apparently, several things in CMainFrame need the registry key to be set in CMFCSDIminimalApp::InitInstance().
