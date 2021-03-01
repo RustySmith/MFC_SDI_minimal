@@ -20,7 +20,7 @@
 // CMFCSDIminimalApp
 
 BEGIN_MESSAGE_MAP(CMFCSDIminimalApp, CWinAppEx)
-	ON_COMMAND(ID_APP_ABOUT, &CMFCSDIminimalApp::OnAppAbout)
+	//ON_COMMAND(ID_APP_ABOUT, &CMFCSDIminimalApp::OnAppAbout)
 	// Standard file based document commands
 	ON_COMMAND(ID_FILE_NEW, &CWinAppEx::OnFileNew)
 	ON_COMMAND(ID_FILE_OPEN, &CWinAppEx::OnFileOpen)
@@ -48,7 +48,7 @@ BOOL CMFCSDIminimalApp::InitInstance()
 
 	EnableTaskbarInteraction(FALSE);
 
-	//SetRegistryKey(_T("Local AppWizard-Generated Applications"));
+	SetRegistryKey(_T("Local AppWizard-Generated Applications"));
 	LoadStdProfileSettings(0);  // Load standard INI file options (including MRU)
 
 	//InitContextMenuManager();
@@ -74,9 +74,7 @@ BOOL CMFCSDIminimalApp::InitInstance()
 
 	// Parse command line for standard shell commands, DDE, file open
 	CCommandLineInfo cmdInfo;
-	ParseCommandLine(cmdInfo);
-
-
+	//ParseCommandLine(cmdInfo);
 
 	// Dispatch commands specified on the command line.  Will return FALSE if
 	// app was launched with /RegServer, /Register, /Unregserver or /Unregister.
@@ -92,63 +90,63 @@ BOOL CMFCSDIminimalApp::InitInstance()
 // CMFCSDIminimalApp message handlers
 
 
-// CAboutDlg dialog used for App About
+//// CAboutDlg dialog used for App About
+//
+//class CAboutDlg : public CDialogEx
+//{
+//public:
+//	CAboutDlg() noexcept;
 
-class CAboutDlg : public CDialogEx
-{
-public:
-	CAboutDlg() noexcept;
+//// Dialog Data
+//#ifdef AFX_DESIGN_TIME
+//	enum { IDD = IDD_ABOUTBOX };
+//#endif
+//
+//protected:
+//	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+//
+//// Implementation
+//protected:
+//	DECLARE_MESSAGE_MAP()
+//};
+//
+//CAboutDlg::CAboutDlg() noexcept : CDialogEx(IDD_ABOUTBOX)
+//{
+//}
+//
+//void CAboutDlg::DoDataExchange(CDataExchange* pDX)
+//{
+//	CDialogEx::DoDataExchange(pDX);
+//}
+//
+//BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
+//END_MESSAGE_MAP()
+//
+//// App command to run the dialog
+//void CMFCSDIminimalApp::OnAppAbout()
+//{
+//	CAboutDlg aboutDlg;
+//	aboutDlg.DoModal();
+//}
 
-// Dialog Data
-#ifdef AFX_DESIGN_TIME
-	enum { IDD = IDD_ABOUTBOX };
-#endif
-
-protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-
-// Implementation
-protected:
-	DECLARE_MESSAGE_MAP()
-};
-
-CAboutDlg::CAboutDlg() noexcept : CDialogEx(IDD_ABOUTBOX)
-{
-}
-
-void CAboutDlg::DoDataExchange(CDataExchange* pDX)
-{
-	CDialogEx::DoDataExchange(pDX);
-}
-
-BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
-END_MESSAGE_MAP()
-
-// App command to run the dialog
-void CMFCSDIminimalApp::OnAppAbout()
-{
-	CAboutDlg aboutDlg;
-	aboutDlg.DoModal();
-}
-
-// CMFCSDIminimalApp customization load/save methods
-
-void CMFCSDIminimalApp::PreLoadState()
-{
-	BOOL bNameValid;
-	CString strName;
-	bNameValid = strName.LoadString(IDS_EDIT_MENU);
-	ASSERT(bNameValid);
-	GetContextMenuManager()->AddMenu(strName, IDR_POPUP_EDIT);
-}
-
-void CMFCSDIminimalApp::LoadCustomState()
-{
-}
-
-void CMFCSDIminimalApp::SaveCustomState()
-{
-}
+//// CMFCSDIminimalApp customization load/save methods
+//
+//void CMFCSDIminimalApp::PreLoadState()
+//{
+//	BOOL bNameValid;
+//	CString strName;
+//	bNameValid = strName.LoadString(IDS_EDIT_MENU);
+//	ASSERT(bNameValid);
+//	GetContextMenuManager()->AddMenu(strName, IDR_POPUP_EDIT);
+//}
+//
+//void CMFCSDIminimalApp::LoadCustomState()
+//{
+//}
+//
+//void CMFCSDIminimalApp::SaveCustomState()
+//{
+//}
 
 // CMFCSDIminimalApp message handlers
 
