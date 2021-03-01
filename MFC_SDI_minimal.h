@@ -25,7 +25,7 @@ public:
 	virtual BOOL InitInstance();
 
 // Implementation
-	UINT  m_nAppLook;
+	//UINT  m_nAppLook;
 	BOOL  m_bHiColorIcons;
 
 	//virtual void PreLoadState();

@@ -18,10 +18,10 @@ IMPLEMENT_DYNCREATE(CMainFrame, CFrameWndEx)
 
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
 	ON_WM_CREATE()
-	ON_COMMAND(ID_VIEW_CUSTOMIZE, &CMainFrame::OnViewCustomize)
+	//ON_COMMAND(ID_VIEW_CUSTOMIZE, &CMainFrame::OnViewCustomize)
 	ON_REGISTERED_MESSAGE(AFX_WM_CREATETOOLBAR, &CMainFrame::OnToolbarCreateNew)
-	ON_COMMAND_RANGE(ID_VIEW_APPLOOK_WIN_2000, ID_VIEW_APPLOOK_WINDOWS_7, &CMainFrame::OnApplicationLook)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_APPLOOK_WIN_2000, ID_VIEW_APPLOOK_WINDOWS_7, &CMainFrame::OnUpdateApplicationLook)
+	//ON_COMMAND_RANGE(ID_VIEW_APPLOOK_WIN_2000, ID_VIEW_APPLOOK_WINDOWS_7, &CMainFrame::OnApplicationLook)
+	//ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_APPLOOK_WIN_2000, ID_VIEW_APPLOOK_WINDOWS_7, &CMainFrame::OnUpdateApplicationLook)
 END_MESSAGE_MAP()
 
 // CMainFrame construction/destruction
@@ -99,11 +99,8 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 	if( !CFrameWndEx::PreCreateWindow(cs) )
 		return FALSE;
-	// TODO: Modify the Window class or styles here by modifying
-	//  the CREATESTRUCT cs
 
-	cs.style = WS_OVERLAPPED | WS_CAPTION | FWS_ADDTOTITLE
-		;
+	cs.style = WS_OVERLAPPED | WS_CAPTION | FWS_ADDTOTITLE;
 
 	return TRUE;
 }
@@ -125,11 +122,11 @@ void CMainFrame::Dump(CDumpContext& dc) const
 
 // CMainFrame message handlers
 
-void CMainFrame::OnViewCustomize()
-{
-	CMFCToolBarsCustomizeDialog* pDlgCust = new CMFCToolBarsCustomizeDialog(this, TRUE /* scan menus */);
-	pDlgCust->Create();
-}
+//void CMainFrame::OnViewCustomize()
+//{
+//	CMFCToolBarsCustomizeDialog* pDlgCust = new CMFCToolBarsCustomizeDialog(this, TRUE /* scan menus */);
+//	pDlgCust->Create();
+//}
 
 LRESULT CMainFrame::OnToolbarCreateNew(WPARAM wp,LPARAM lp)
 {
@@ -151,80 +148,82 @@ LRESULT CMainFrame::OnToolbarCreateNew(WPARAM wp,LPARAM lp)
 	return lres;
 }
 
-void CMainFrame::OnApplicationLook(UINT id)
-{
-	CWaitCursor wait;
+//void CMainFrame::OnApplicationLook(UINT id)
+//{
+//	CWaitCursor wait;
+//
+//	theApp.m_nAppLook = id;
+//
+//	switch (theApp.m_nAppLook)
+//	{
+//	case ID_VIEW_APPLOOK_WIN_2000:
+//		CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManager));
+//		break;
+//
+//	case ID_VIEW_APPLOOK_OFF_XP:
+//		CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerOfficeXP));
+//		break;
+//
+//	case ID_VIEW_APPLOOK_WIN_XP:
+//		CMFCVisualManagerWindows::m_b3DTabsXPTheme = TRUE;
+//		CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerWindows));
+//		break;
+//
+//	case ID_VIEW_APPLOOK_OFF_2003:
+//		CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerOffice2003));
+//		CDockingManager::SetDockingMode(DT_SMART);
+//		break;
+//
+//	case ID_VIEW_APPLOOK_VS_2005:
+//		CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerVS2005));
+//		CDockingManager::SetDockingMode(DT_SMART);
+//		break;
+//
+//	case ID_VIEW_APPLOOK_VS_2008:
+//		CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerVS2008));
+//		CDockingManager::SetDockingMode(DT_SMART);
+//		break;
+//
+//	case ID_VIEW_APPLOOK_WINDOWS_7:
+//		CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerWindows7));
+//		CDockingManager::SetDockingMode(DT_SMART);
+//		break;
+//
+//	default:
+//		switch (theApp.m_nAppLook)
+//		{
+//		case ID_VIEW_APPLOOK_OFF_2007_BLUE:
+//			CMFCVisualManagerOffice2007::SetStyle(CMFCVisualManagerOffice2007::Office2007_LunaBlue);
+//			break;
+//
+//		case ID_VIEW_APPLOOK_OFF_2007_BLACK:
+//			CMFCVisualManagerOffice2007::SetStyle(CMFCVisualManagerOffice2007::Office2007_ObsidianBlack);
+//			break;
+//
+//		case ID_VIEW_APPLOOK_OFF_2007_SILVER:
+//			CMFCVisualManagerOffice2007::SetStyle(CMFCVisualManagerOffice2007::Office2007_Silver);
+//			break;
+//
+//		case ID_VIEW_APPLOOK_OFF_2007_AQUA:
+//			CMFCVisualManagerOffice2007::SetStyle(CMFCVisualManagerOffice2007::Office2007_Aqua);
+//			break;
+//		}
+//
+//		CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerOffice2007));
+//		CDockingManager::SetDockingMode(DT_SMART);
+//	}
+//
+//	RedrawWindow(nullptr, nullptr, RDW_ALLCHILDREN | RDW_INVALIDATE | RDW_UPDATENOW | RDW_FRAME | RDW_ERASE);
+//
+//	//Set the ApplicationLook registry key to theApp.m_nAppLook.
+//	//The value of theApp.m_nAppLook is the same as the id value passed to this function.
+//	theApp.WriteInt(_T("ApplicationLook"), theApp.m_nAppLook);
+//}
 
-	theApp.m_nAppLook = id;
-
-	switch (theApp.m_nAppLook)
-	{
-	case ID_VIEW_APPLOOK_WIN_2000:
-		CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManager));
-		break;
-
-	case ID_VIEW_APPLOOK_OFF_XP:
-		CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerOfficeXP));
-		break;
-
-	case ID_VIEW_APPLOOK_WIN_XP:
-		CMFCVisualManagerWindows::m_b3DTabsXPTheme = TRUE;
-		CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerWindows));
-		break;
-
-	case ID_VIEW_APPLOOK_OFF_2003:
-		CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerOffice2003));
-		CDockingManager::SetDockingMode(DT_SMART);
-		break;
-
-	case ID_VIEW_APPLOOK_VS_2005:
-		CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerVS2005));
-		CDockingManager::SetDockingMode(DT_SMART);
-		break;
-
-	case ID_VIEW_APPLOOK_VS_2008:
-		CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerVS2008));
-		CDockingManager::SetDockingMode(DT_SMART);
-		break;
-
-	case ID_VIEW_APPLOOK_WINDOWS_7:
-		CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerWindows7));
-		CDockingManager::SetDockingMode(DT_SMART);
-		break;
-
-	default:
-		switch (theApp.m_nAppLook)
-		{
-		case ID_VIEW_APPLOOK_OFF_2007_BLUE:
-			CMFCVisualManagerOffice2007::SetStyle(CMFCVisualManagerOffice2007::Office2007_LunaBlue);
-			break;
-
-		case ID_VIEW_APPLOOK_OFF_2007_BLACK:
-			CMFCVisualManagerOffice2007::SetStyle(CMFCVisualManagerOffice2007::Office2007_ObsidianBlack);
-			break;
-
-		case ID_VIEW_APPLOOK_OFF_2007_SILVER:
-			CMFCVisualManagerOffice2007::SetStyle(CMFCVisualManagerOffice2007::Office2007_Silver);
-			break;
-
-		case ID_VIEW_APPLOOK_OFF_2007_AQUA:
-			CMFCVisualManagerOffice2007::SetStyle(CMFCVisualManagerOffice2007::Office2007_Aqua);
-			break;
-		}
-
-		CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerOffice2007));
-		CDockingManager::SetDockingMode(DT_SMART);
-	}
-
-	RedrawWindow(nullptr, nullptr, RDW_ALLCHILDREN | RDW_INVALIDATE | RDW_UPDATENOW | RDW_FRAME | RDW_ERASE);
-
-	theApp.WriteInt(_T("ApplicationLook"), theApp.m_nAppLook);
-}
-
-void CMainFrame::OnUpdateApplicationLook(CCmdUI* pCmdUI)
-{
-	pCmdUI->SetRadio(theApp.m_nAppLook == pCmdUI->m_nID);
-}
+//void CMainFrame::OnUpdateApplicationLook(CCmdUI* pCmdUI)
+//{
+//	pCmdUI->SetRadio(theApp.m_nAppLook == pCmdUI->m_nID);
+//}
 
 
 BOOL CMainFrame::LoadFrame(UINT nIDResource, DWORD dwDefaultStyle, CWnd* pParentWnd, CCreateContext* pContext)
