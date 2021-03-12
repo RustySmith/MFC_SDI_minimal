@@ -72,7 +72,6 @@ void CMFCSDIminimalView::OnContextMenu(CWnd* /* pWnd */, CPoint point)
 #endif
 }
 
-
 // CMFCSDIminimalView diagnostics
 
 #ifdef _DEBUG

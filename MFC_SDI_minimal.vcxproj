@@ -96,6 +96,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <GenerateMapFile>true</GenerateMapFile>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>

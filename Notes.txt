@@ -5,3 +5,24 @@ Apparently, several things in CMainFrame need the registry key to be set in CMFC
 In CMFCSDIminimalApp::InitInstance(), the ProcessShellCommand() function appears to invoke CMainFrame::LoadFrame() and CMainFrame::PreCreateWindow(). PreCreateWindow() is passed a CREATESTRUCT named cs. This structure is initialized to default values, but may be overidden. The window height and width are both zero at this point, so they must get set later.
 
 Finished first pass at CMainFrame::OnCreate().
+
+I deleted the code I had previously commented. Project builds and runs. It isn't minimal yet, but it is a lot closer than when I started.
+
+About the menu bar:
+MainFrm.h defines m_wndMenuBar as a CMFCMenuBar class object.
+The MenuBar is created in MainFrm.cpp by a call to CMFCMenuBar::Create().
+
+Startup sequence:
+minimal constructor is called.
+minimal InitInstance is called.
+	a new SingleDocTemplate is created.
+	AddDocTemplate is called.
+	ProcessShellCommand is called.
+MainFrm constructor is called.
+MainFrm PreCreateWindow is called.
+View constructor is called.
+Doc constructor is called.
+MainFrm OnCreate is called.
+Window opens.
+
+The Dyncreate stuff seems to happen in another thread.

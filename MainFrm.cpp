@@ -18,10 +18,7 @@ IMPLEMENT_DYNCREATE(CMainFrame, CFrameWndEx)
 
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
 	ON_WM_CREATE()
-	//ON_COMMAND(ID_VIEW_CUSTOMIZE, &CMainFrame::OnViewCustomize)
 	ON_REGISTERED_MESSAGE(AFX_WM_CREATETOOLBAR, &CMainFrame::OnToolbarCreateNew)
-	//ON_COMMAND_RANGE(ID_VIEW_APPLOOK_WIN_2000, ID_VIEW_APPLOOK_WINDOWS_7, &CMainFrame::OnApplicationLook)
-	//ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_APPLOOK_WIN_2000, ID_VIEW_APPLOOK_WINDOWS_7, &CMainFrame::OnUpdateApplicationLook)
 END_MESSAGE_MAP()
 
 // CMainFrame construction/destruction
@@ -29,7 +26,6 @@ END_MESSAGE_MAP()
 CMainFrame::CMainFrame() noexcept
 {
 	// TODO: add member initialization code here
-	//theApp.m_nAppLook = theApp.GetInt(_T("ApplicationLook"), ID_VIEW_APPLOOK_VS_2008);
 }
 
 CMainFrame::~CMainFrame()
@@ -71,27 +67,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	ASSERT(bNameValid);
 	m_wndToolBar.EnableCustomizeButton(TRUE, ID_VIEW_CUSTOMIZE, strCustomize);
 
-	//// TODO: Delete these five lines if you don't want the toolbar and menubar to be dockable
-	//m_wndMenuBar.EnableDocking(CBRS_ALIGN_ANY);
-	//m_wndToolBar.EnableDocking(CBRS_ALIGN_ANY);
-	//EnableDocking(CBRS_ALIGN_ANY);
-	//DockPane(&m_wndMenuBar);
-	//DockPane(&m_wndToolBar);
-
-
-	//// enable Visual Studio 2005 style docking window behavior
-	//CDockingManager::SetDockingMode(DT_SMART);
-	//// enable Visual Studio 2005 style docking window auto-hide behavior
-	//EnableAutoHidePanes(CBRS_ALIGN_ANY);
-	//// set the visual manager and style based on persisted value
-	//OnApplicationLook(theApp.m_nAppLook);
-
-	//// Enable toolbar and docking window menu replacement
-	//EnablePaneMenu(TRUE, ID_VIEW_CUSTOMIZE, strCustomize, ID_VIEW_TOOLBAR);
-
-	//// enable quick (Alt+drag) toolbar customization
-	//CMFCToolBar::EnableQuickCustomization();
-
 	return 0;
 }
 
@@ -100,7 +75,7 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 	if( !CFrameWndEx::PreCreateWindow(cs) )
 		return FALSE;
 
-	cs.style = WS_OVERLAPPED | WS_CAPTION | FWS_ADDTOTITLE;
+	cs.style = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU;
 
 	return TRUE;
 }
@@ -122,12 +97,6 @@ void CMainFrame::Dump(CDumpContext& dc) const
 
 // CMainFrame message handlers
 
-//void CMainFrame::OnViewCustomize()
-//{
-//	CMFCToolBarsCustomizeDialog* pDlgCust = new CMFCToolBarsCustomizeDialog(this, TRUE /* scan menus */);
-//	pDlgCust->Create();
-//}
-
 LRESULT CMainFrame::OnToolbarCreateNew(WPARAM wp,LPARAM lp)
 {
 	LRESULT lres = CFrameWndEx::OnToolbarCreateNew(wp,lp);
@@ -147,83 +116,6 @@ LRESULT CMainFrame::OnToolbarCreateNew(WPARAM wp,LPARAM lp)
 	pUserToolbar->EnableCustomizeButton(TRUE, ID_VIEW_CUSTOMIZE, strCustomize);
 	return lres;
 }
-
-//void CMainFrame::OnApplicationLook(UINT id)
-//{
-//	CWaitCursor wait;
-//
-//	theApp.m_nAppLook = id;
-//
-//	switch (theApp.m_nAppLook)
-//	{
-//	case ID_VIEW_APPLOOK_WIN_2000:
-//		CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManager));
-//		break;
-//
-//	case ID_VIEW_APPLOOK_OFF_XP:
-//		CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerOfficeXP));
-//		break;
-//
-//	case ID_VIEW_APPLOOK_WIN_XP:
-//		CMFCVisualManagerWindows::m_b3DTabsXPTheme = TRUE;
-//		CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerWindows));
-//		break;
-//
-//	case ID_VIEW_APPLOOK_OFF_2003:
-//		CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerOffice2003));
-//		CDockingManager::SetDockingMode(DT_SMART);
-//		break;
-//
-//	case ID_VIEW_APPLOOK_VS_2005:
-//		CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerVS2005));
-//		CDockingManager::SetDockingMode(DT_SMART);
-//		break;
-//
-//	case ID_VIEW_APPLOOK_VS_2008:
-//		CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerVS2008));
-//		CDockingManager::SetDockingMode(DT_SMART);
-//		break;
-//
-//	case ID_VIEW_APPLOOK_WINDOWS_7:
-//		CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerWindows7));
-//		CDockingManager::SetDockingMode(DT_SMART);
-//		break;
-//
-//	default:
-//		switch (theApp.m_nAppLook)
-//		{
-//		case ID_VIEW_APPLOOK_OFF_2007_BLUE:
-//			CMFCVisualManagerOffice2007::SetStyle(CMFCVisualManagerOffice2007::Office2007_LunaBlue);
-//			break;
-//
-//		case ID_VIEW_APPLOOK_OFF_2007_BLACK:
-//			CMFCVisualManagerOffice2007::SetStyle(CMFCVisualManagerOffice2007::Office2007_ObsidianBlack);
-//			break;
-//
-//		case ID_VIEW_APPLOOK_OFF_2007_SILVER:
-//			CMFCVisualManagerOffice2007::SetStyle(CMFCVisualManagerOffice2007::Office2007_Silver);
-//			break;
-//
-//		case ID_VIEW_APPLOOK_OFF_2007_AQUA:
-//			CMFCVisualManagerOffice2007::SetStyle(CMFCVisualManagerOffice2007::Office2007_Aqua);
-//			break;
-//		}
-//
-//		CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerOffice2007));
-//		CDockingManager::SetDockingMode(DT_SMART);
-//	}
-//
-//	RedrawWindow(nullptr, nullptr, RDW_ALLCHILDREN | RDW_INVALIDATE | RDW_UPDATENOW | RDW_FRAME | RDW_ERASE);
-//
-//	//Set the ApplicationLook registry key to theApp.m_nAppLook.
-//	//The value of theApp.m_nAppLook is the same as the id value passed to this function.
-//	theApp.WriteInt(_T("ApplicationLook"), theApp.m_nAppLook);
-//}
-
-//void CMainFrame::OnUpdateApplicationLook(CCmdUI* pCmdUI)
-//{
-//	pCmdUI->SetRadio(theApp.m_nAppLook == pCmdUI->m_nID);
-//}
 
 
 BOOL CMainFrame::LoadFrame(UINT nIDResource, DWORD dwDefaultStyle, CWnd* pParentWnd, CCreateContext* pContext)
